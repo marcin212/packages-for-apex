@@ -1,0 +1,37 @@
+<idea-plugin>
+    <id>com.bymarcin.packages4apex</id>
+    <name>Packages for Apex</name>
+    <vendor email="marcin212@protonmail.com" url="https://packages4apex.bymarcin.com">Marcin Dobrowolski</vendor>
+
+    <description><![CDATA[
+    <b>Packages for Apex</b> <br/>
+    Better class management by adding a virtual package system to Apex.<br/><br/>
+    How to use:
+    <ol>
+    <li> Create class or open existing</li>
+    <li> Add comment before class: <em>//package com.example.package</em></li>
+    <li> After synchronize class should change location to virtual package.</li>
+    </ol>
+    <i>You can force synchronization by action 'Synchronize Apex Packages' in Tool menu</i>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <treeStructureProvider implementation="com.bymarcin.packages4apex.ApexPackagesStructureTreeProvider"/>
+        <notificationGroup id="Packages4Apex" displayType="BALLOON" />
+    </extensions>
+
+    <actions>
+        <group id="com.bymarcin.packages4apex.action.Group" text="Packages for Apex" popup="true" icon="/icons/logo.svg">
+            <action id="com.bymarcin.packages4apex.action.SynchronizePackages" class="com.bymarcin.packages4apex.action.SynchronizePackages"
+                    text="Synchronize Apex Packages" description="Synchronize apex packages"/>
+            <action id="com.bymarcin.packages4apex.action.CreateConfig" class="com.bymarcin.packages4apex.action.CreateConfig"
+                    text="Create Apex Packages Config" description="Creates Apex Packages config file in project."/>
+            <add-to-group group-id="ToolsMenu"/>
+        </group>
+    </actions>
+</idea-plugin>
