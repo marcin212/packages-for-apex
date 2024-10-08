@@ -5,6 +5,7 @@ import com.intellij.ide.SaveAndSyncHandler;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
@@ -16,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class CreateConfig extends AnAction {
-    private CustomConfig customConfig = new CustomConfig();
+    private final CustomConfig customConfig = new CustomConfig();
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
@@ -48,5 +49,10 @@ public class CreateConfig extends AnAction {
         boolean enabled = project != null && !customConfig.configFileExists(project);
         presentation.setEnabled(enabled);
         presentation.setVisible(true);
+    }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT;
     }
 }

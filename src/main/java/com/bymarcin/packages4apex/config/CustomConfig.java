@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Paths;
 
 public class CustomConfig {
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     public PackageConfig loadConfig(Project project) {
         File file = configFile(project);

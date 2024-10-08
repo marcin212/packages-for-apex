@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ApexPackageTreeBuilder {
-    private Package rootDir = new Package("root");
+    private final Package rootDir = new Package("root");
 
     public void addFile(PackageString pkg, PsiFileNode fileNode) {
         Package last = rootDir;
