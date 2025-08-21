@@ -3,11 +3,11 @@ import org.jetbrains.intellij.platform.gradle.models.ProductRelease
 
 plugins {
   id("java")
-  id("org.jetbrains.intellij.platform") version "2.1.0"
+  id("org.jetbrains.intellij.platform") version "2.7.2"
 }
 
 group = "com.bymarcin"
-version = "1.7.4"
+version = "1.7.5"
 
 repositories {
   mavenCentral()
@@ -19,8 +19,7 @@ repositories {
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
   intellijPlatform {
-    create("IC", "2024.2.3")
-    instrumentationTools()
+    create("IC", "2025.2")
     pluginVerifier()
   }
 }
@@ -28,13 +27,13 @@ dependencies {
 intellijPlatform {
   pluginVerification {
     ides {
-      ide(IntelliJPlatformType.IntellijIdeaCommunity, "2024.2.3")
+      ide(IntelliJPlatformType.IntellijIdeaCommunity, "2025.2")
       recommended()
       select {
         types = listOf(IntelliJPlatformType.IntellijIdeaCommunity)
         channels = listOf(ProductRelease.Channel.RELEASE)
-        sinceBuild = "232"
-        untilBuild = "242.*"
+        sinceBuild = "241"
+        untilBuild = "252.*"
       }
     }
   }
@@ -43,13 +42,13 @@ intellijPlatform {
 tasks {
   // Set the JVM compatibility versions
   withType<JavaCompile> {
-    sourceCompatibility = "17"
-    targetCompatibility = "17"
+    sourceCompatibility = "21"
+    targetCompatibility = "21"
   }
 
   patchPluginXml {
-    sinceBuild.set("212")
-    untilBuild.set("242.*")
+    sinceBuild.set("241")
+    untilBuild.set("252.*")
     changeNotes.set("""
         <ul>
             <li>Update to new version of idea</li>
